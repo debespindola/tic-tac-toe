@@ -1,0 +1,46 @@
+{
+  "name": "tictactoe",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.21.1",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-react": "^7.21.5",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "4.0.3",
+    "styled-components": "^5.2.1",
+    "web-vitals": "^1.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "jest",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.13.10",
+    "@babel/preset-react": "^7.12.13"
+  },
+  "main": "index.js",
+  "license": "MIT"
+}
