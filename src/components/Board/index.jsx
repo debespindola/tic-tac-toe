@@ -1,10 +1,14 @@
 import { useState, useContext, useEffect } from 'react';
 
 import { SwitchPlayerContext } from '../../helpers/SwitchProvider';
-import { RowChecker, ColumnChecker, DiagonalChecker } from '../../helpers/VictoryConditions';
+import {
+  RowChecker, ColumnChecker, DiagonalChecker, EndGame,
+} from '../../helpers/VictoryConditions';
 import { BoardContainer } from './style';
+
 import GridItem from '../GridItem/index';
 import ResetButton from '../ResetButton/index';
+import Player from '../Player/index';
 
 const Board = () => {
   const { switchValue, switchDispatch } = useContext(SwitchPlayerContext);
@@ -35,17 +39,26 @@ const Board = () => {
 
   const victoryChecker = () => {
     if (RowChecker(matrix) || ColumnChecker(matrix) || DiagonalChecker(matrix)) {
-      alert('You won!');
+      alert(`${!switchValue ? 'X' : 'O'} won!`);
+      resetGame();
+    }
+  };
+
+  const checkDraw = () => {
+    if (EndGame(matrix)) {
+      alert('Nobody won!');
       resetGame();
     }
   };
 
   useEffect(() => {
     victoryChecker();
+    checkDraw();
   }, [matrix]);
 
   return (
     <>
+      <Player player={switchValue ? 'X' : 'O'} />
       <BoardContainer>
         {matrix.map((row, i) => row.map((item, j) => (
           <GridItem

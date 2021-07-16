@@ -50,3 +50,14 @@ export const DiagonalChecker = (matrix) => {
     return true;
   } return false;
 };
+
+export const EndGame = (matrix) => {
+  for (let i = 0; i < 3; i += 1) {
+    for (let j = 0; j < 3; j += 1) {
+      if (matrix[i][j] === null) {
+        return false;
+      }
+    }
+  }
+  return true;
+};
