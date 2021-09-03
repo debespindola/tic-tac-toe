@@ -1,4 +1,6 @@
 import { useState, useContext, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { SwitchPlayerContext } from '../../helpers/SwitchProvider';
 import {
@@ -39,14 +41,32 @@ const Board = () => {
 
   const victoryChecker = () => {
     if (RowChecker(matrix) || ColumnChecker(matrix) || DiagonalChecker(matrix)) {
-      alert(`${!switchValue ? 'X' : 'O'} won!`);
+      toast.success(`${!switchValue ? 'X' : 'O'} won!`, {
+        theme: 'colored',
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       resetGame();
     }
   };
 
   const checkDraw = () => {
     if (EndGame(matrix)) {
-      alert('Nobody won!');
+      toast('🤡 Nobody won!', {
+        theme: 'colored',
+        position: 'top-center',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       resetGame();
     }
   };
@@ -59,6 +79,17 @@ const Board = () => {
   return (
     <>
       <Player player={switchValue ? 'X' : 'O'} />
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <BoardContainer>
         {matrix.map((row, i) => row.map((item, j) => (
           <GridItem
@@ -67,7 +98,6 @@ const Board = () => {
             onClick={() => handleMatrix(i, j)}
           />
         )))}
-
       </BoardContainer>
       <ResetButton action={resetGame} />
     </>
